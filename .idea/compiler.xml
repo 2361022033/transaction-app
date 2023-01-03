@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="junfukt-service" />
+        <module name="junfukt-StudyTest" />
         <module name="junfukt-api" />
         <module name="junfukt-provider" />
+        <module name="junfukt-service" />
       </profile>
     </annotationProcessing>
   </component>

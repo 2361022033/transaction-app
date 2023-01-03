@@ -12,6 +12,7 @@
         <module>junfukt-api</module>
         <module>junfukt-provider</module>
         <module>junfukt-service</module>
+        <module>junfukt-StudyTest</module>
     </modules>
 
     <properties>
