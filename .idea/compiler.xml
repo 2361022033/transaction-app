@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="junfukt-StudyTest" />
-        <module name="junfukt-api" />
         <module name="junfukt-provider" />
-        <module name="junfukt-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="junfukt-api" target="8" />
+      <module name="junfukt-service" target="8" />
+      <module name="junfukt-StudyTest" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
