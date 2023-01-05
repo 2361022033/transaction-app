@@ -1,20 +1,20 @@
-package com.domain.entity;
+package junfukt.com.controller.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Table;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Accessors(chain = true)
-@Table(name = "junfukt_user")
-public class User implements Serializable {
+public class UserResp implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * id
      */
+    @Id
     private Long id;
     /**
      * 用户id

@@ -1,36 +1,36 @@
-package com.domain.entity;
+package junfukt.com.controller.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Accessors(chain = true)
-@Table(name = "junfukt_user")
-public class User implements Serializable {
+public class UserAddReq implements Serializable {
     private static final long serialVersionUID = 1L;
-    /**
-     * id
-     */
-    private Long id;
     /**
      * 用户id
      */
+    @NotEmpty(message = "用户号不能为空")
     private String userId;
     /**
      * 工号
      */
+    @NotEmpty(message = "工号不能为空")
     private String staffNo;
     /**
      * 真实姓名
      */
+    @NotEmpty(message = "真实姓名不能为空")
     private String realName;
     /**
      * 昵称
      */
+    @NotEmpty(message = "昵称不能为空")
     private String nickName;
     /**
      * 头像
@@ -40,13 +40,5 @@ public class User implements Serializable {
      * 个性签名
      */
     private String introduction;
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
 
 }
