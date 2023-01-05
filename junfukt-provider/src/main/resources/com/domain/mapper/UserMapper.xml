@@ -16,4 +16,13 @@
   <select id="selectByUserId" resultMap="BaseResultMap">
     select * from junfukt_user where user_id = #{userId}
   </select>
+  <update id="updateByUsetId" parameterType="junfukt.com.controller.dto.UserUpdateReq">
+    update junfukt_user
+    <set>
+    <if test="nickName!=null">nick_name = #{nickName},</if>
+    <if test="avatar">avatar = #{avatar},</if>
+    <if test="introduction">introduction = #{introduction},</if>
+    </set>
+    where id = #{id}
+  </update>
 </mapper>

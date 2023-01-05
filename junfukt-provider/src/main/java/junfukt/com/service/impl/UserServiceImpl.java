@@ -4,10 +4,12 @@ import com.domain.entity.User;
 import com.domain.mapper.UserMapper;
 import junfukt.com.controller.dto.UserAddReq;
 import junfukt.com.controller.dto.UserResp;
+import junfukt.com.controller.dto.UserUpdateReq;
 import junfukt.com.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -39,6 +41,20 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 编辑用户信息
+     * @param req
+     */
+    @Override
+    public void update(UserUpdateReq req) {
+        User user = userMapper.selectByUserId(req.getUserId());
+        if (Objects.isNull(user)){
+            throw new RuntimeException("用户号不存在!");
+        }
+        req.setId(user.getId());
+        Long a =userMapper.updateByUsetId(req);
+    }
+
+    /**
      * 查询全部用户
      * 以后做分页框架 todo
      * @return
@@ -54,4 +70,21 @@ public class UserServiceImpl implements UserService {
         }
         return out;
     }
+
+    /**
+     * 查询用户信息
+     * @param userId
+     * @return
+     */
+    @Override
+    public UserResp selectUserByUserId(String userId) {
+        if (StringUtils.isEmpty(userId)){
+            throw new RuntimeException("用户号不能为空");
+        }
+        User user = userMapper.selectByUserId(userId);
+        UserResp userResp = new UserResp();
+        BeanUtils.copyProperties(user,userResp);
+        return userResp;
+    }
+
 }
