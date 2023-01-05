@@ -6,6 +6,9 @@ import junfukt.com.controller.dto.UserAddReq;
 import junfukt.com.controller.dto.UserResp;
 import junfukt.com.controller.dto.UserUpdateReq;
 import junfukt.com.service.UserService;
+import junfukt.com.utils.BasePageReq;
+import junfukt.com.utils.BasePageResp;
+import junfukt.com.utils.PageResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -55,20 +58,23 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 查询全部用户
-     * 以后做分页框架 todo
+     * 分页查询全部用户
      * @return
      */
     @Override
-    public List<UserResp> selectAll() {
-        List<User> users = userMapper.selectAll();
+    public BasePageResp<UserResp> selectAll(BasePageReq req) {
+        Long count = userMapper.countPageList(req);
+        if(count<1){
+            return PageResultUtils.defaultPageResult(req);
+        }
+        List<User> users = userMapper.selectPageList(req);
         List<UserResp> out = new ArrayList<UserResp>();
         for (User user:users) {
             UserResp userResp = new UserResp();
             BeanUtils.copyProperties(user,userResp);
             out.add(userResp);
         }
-        return out;
+        return PageResultUtils.buildPageResult(req,count,out);
     }
 
     /**

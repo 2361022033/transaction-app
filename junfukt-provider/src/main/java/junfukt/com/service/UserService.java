@@ -3,8 +3,8 @@ package junfukt.com.service;
 import junfukt.com.controller.dto.UserAddReq;
 import junfukt.com.controller.dto.UserResp;
 import junfukt.com.controller.dto.UserUpdateReq;
-
-import java.util.List;
+import junfukt.com.utils.BasePageReq;
+import junfukt.com.utils.BasePageResp;
 
 public interface UserService {
     /**
@@ -20,10 +20,10 @@ public interface UserService {
     void update(UserUpdateReq req);
 
     /**
-     * 查询全部用户列表
+     * 分页查询全部用户列表
      * @return
      */
-    List<UserResp> selectAll();
+    BasePageResp<UserResp> selectAll(BasePageReq req);
 
     /**
      * 查询用户信息
