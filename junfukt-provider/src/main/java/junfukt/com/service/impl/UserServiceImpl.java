@@ -1,7 +1,7 @@
 package junfukt.com.service.impl;
 
-import com.domain.entity.User;
-import com.domain.mapper.UserMapper;
+import junfukt.com.domain.entity.User;
+import junfukt.com.domain.mapper.UserMapper;
 import junfukt.com.controller.dto.UserAddReq;
 import junfukt.com.controller.dto.UserResp;
 import junfukt.com.controller.dto.UserUpdateReq;
@@ -82,6 +82,9 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("用户号不能为空");
         }
         User user = userMapper.selectByUserId(userId);
+        if (Objects.isNull(user)){
+            return null;
+        }
         UserResp userResp = new UserResp();
         BeanUtils.copyProperties(user,userResp);
         return userResp;

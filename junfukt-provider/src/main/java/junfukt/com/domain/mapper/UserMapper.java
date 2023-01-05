@@ -1,6 +1,6 @@
-package com.domain.mapper;
+package junfukt.com.domain.mapper;
 
-import com.domain.entity.User;
+import junfukt.com.domain.entity.User;
 import junfukt.com.controller.dto.UserUpdateReq;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

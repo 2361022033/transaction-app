@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.domain.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.domain.entity.User" >
+<mapper namespace="junfukt.com.domain.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="junfukt.com.domain.entity.User" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="staff_no" property="staffNo" jdbcType="VARCHAR" />

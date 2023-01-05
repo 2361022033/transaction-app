@@ -1,4 +1,4 @@
-package com.domain.entity;
+package junfukt.com.domain.entity;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
