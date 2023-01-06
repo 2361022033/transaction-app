@@ -1,5 +1,7 @@
 package junfukt.com.utils;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class PageResultUtils {
         pageBo.setPageSize(pageParam.getPageSize());
         pageBo.setTotal(0L);
         pageBo.setPages(0L);
-        pageBo.setData(new ArrayList());
+        pageBo.setData(Lists.newArrayList());
         return pageBo;
     }
 
