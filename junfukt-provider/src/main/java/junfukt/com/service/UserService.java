@@ -23,7 +23,7 @@ public interface UserService {
      * 分页查询全部用户列表
      * @return
      */
-    BasePageResp<UserResp> selectAll(BasePageReq req);
+    BasePageResp<UserResp> page(BasePageReq req);
 
     /**
      * 查询用户信息

@@ -35,9 +35,9 @@ public class UserController {
         userService.update(req);
     }
 
-    @GetMapping(value = "/selectAll", name = "分页查询所有用户")
-    public BasePageResp<UserResp> add(BasePageReq req) {
-        return userService.selectAll(req);
+    @GetMapping(value = "/page", name = "分页查询所有用户")
+    public BasePageResp<UserResp> page(BasePageReq req) {
+        return userService.page(req);
     }
 
     @GetMapping(value = "/selectUser", name = "查询用户信息")

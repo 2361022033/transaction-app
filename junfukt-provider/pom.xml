@@ -73,6 +73,17 @@
             <artifactId>guava</artifactId>
             <version>31.1-jre</version>
         </dependency>
+        <!--  mapstruct属性映射工具 @Mapper -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.2.Final</version>
+        </dependency>
     </dependencies>
 
     <build>

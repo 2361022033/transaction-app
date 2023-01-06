@@ -1,10 +1,11 @@
 package junfukt.com.service.impl;
 
-import junfukt.com.domain.entity.User;
-import junfukt.com.domain.mapper.UserMapper;
+import junfukt.com.controller.convert.UserConvert;
 import junfukt.com.controller.dto.UserAddReq;
 import junfukt.com.controller.dto.UserResp;
 import junfukt.com.controller.dto.UserUpdateReq;
+import junfukt.com.domain.entity.User;
+import junfukt.com.domain.mapper.UserMapper;
 import junfukt.com.service.UserService;
 import junfukt.com.utils.BasePageReq;
 import junfukt.com.utils.BasePageResp;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 @Slf4j
@@ -62,19 +62,14 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public BasePageResp<UserResp> selectAll(BasePageReq req) {
+    public BasePageResp<UserResp> page(BasePageReq req) {
         Long count = userMapper.countPageList(req);
         if(count<1){
             return PageResultUtils.defaultPageResult(req);
         }
         List<User> users = userMapper.selectPageList(req);
-        List<UserResp> out = new ArrayList<UserResp>();
-        for (User user:users) {
-            UserResp userResp = new UserResp();
-            BeanUtils.copyProperties(user,userResp);
-            out.add(userResp);
-        }
-        return PageResultUtils.buildPageResult(req,count,out);
+        List<UserResp> userRespList = UserConvert.INSTANCE.convert(users);
+        return PageResultUtils.buildPageResult(req,count,userRespList);
     }
 
     /**
