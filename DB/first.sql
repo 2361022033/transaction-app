@@ -7,8 +7,8 @@ CREATE TABLE junfukt_user
     nick_name VARCHAR(32) COLLATE utf8mb4_general_ci COMMENT '昵称',
     avatar VARCHAR(256) COLLATE utf8mb4_general_ci COMMENT '头像',
     introduction VARCHAR(128) COLLATE utf8mb4_general_ci COMMENT '个性签名',
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
-    update_time DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '修改时间',
+    create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  COMMENT  '修改时间',
     PRIMARY KEY (id),
     CONSTRAINT uk_user_id UNIQUE (user_id)
 )

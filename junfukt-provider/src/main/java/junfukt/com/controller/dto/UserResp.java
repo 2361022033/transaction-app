@@ -1,5 +1,6 @@
 package junfukt.com.controller.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -11,42 +12,31 @@ import java.util.Date;
 @Accessors(chain = true)
 public class UserResp implements Serializable {
     private static final long serialVersionUID = 1L;
-    /**
-     * id
-     */
-    @Id
+    @ApiModelProperty("id")
     private Long id;
-    /**
-     * 用户id
-     */
+
+    @ApiModelProperty("用户id")
     private String userId;
-    /**
-     * 工号
-     */
+
+    @ApiModelProperty("工号")
     private String staffNo;
-    /**
-     * 真实姓名
-     */
+
+    @ApiModelProperty("真实姓名")
     private String realName;
-    /**
-     * 昵称
-     */
+
+    @ApiModelProperty("昵称")
     private String nickName;
-    /**
-     * 头像
-     */
+
+    @ApiModelProperty("头像")
     private String avatar;
-    /**
-     * 个性签名
-     */
+
+    @ApiModelProperty("个性签名")
     private String introduction;
-    /**
-     * 创建时间
-     */
+
+    @ApiModelProperty("创建时间")
     private Date createTime;
-    /**
-     * 修改时间
-     */
+
+    @ApiModelProperty("修改时间")
     private Date updateTime;
 
 }

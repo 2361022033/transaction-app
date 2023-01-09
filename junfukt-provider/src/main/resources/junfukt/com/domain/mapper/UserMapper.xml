@@ -25,9 +25,8 @@
     update junfukt_user
     <set>
     <if test="nickName!=null">nick_name = #{nickName},</if>
-    <if test="avatar">avatar = #{avatar},</if>
-    <if test="introduction">introduction = #{introduction},</if>
-    update_time = now()
+    <if test="avatar!=null">avatar = #{avatar},</if>
+    <if test="introduction!=null">introduction = #{introduction},</if>
     </set>
     where id = #{id}
   </update>

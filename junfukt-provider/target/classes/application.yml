@@ -19,7 +19,10 @@ spring:
           statement-close-after-log-enabled: false
           result-set-open-after-log-enabled: false
           result-set-close-after-log-enabled: false
-
+#/系统时间和数据库时区不一致
+  jackson:
+    time-zone: GMT+8update
+# 系统时间和数据库时区不一致/
 junfukt:
   config:
     db:
@@ -27,10 +30,12 @@ junfukt:
       schema: my
       username: root
       password: root123456
-#打印sql日志用
+#/打印sql日志用
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#打印sql日志用/
+
 #mybatis:
 #  configuration:
 #    map-underscore-to-camel-case: true

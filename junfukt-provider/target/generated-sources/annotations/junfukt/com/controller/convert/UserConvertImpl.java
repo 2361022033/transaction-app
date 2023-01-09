@@ -8,7 +8,7 @@ import junfukt.com.domain.entity.User;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-01-06T13:41:57+0800",
+    date = "2023-01-06T15:50:15+0800",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 1.8.0_191 (Oracle Corporation)"
 )
 public class UserConvertImpl implements UserConvert {
