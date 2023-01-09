@@ -1,5 +1,6 @@
 package junfukt.com.service.impl;
 
+import com.google.common.collect.Lists;
 import junfukt.com.controller.convert.UserConvert;
 import junfukt.com.controller.dto.UserAddReq;
 import junfukt.com.controller.dto.UserResp;
@@ -101,5 +102,4 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(user, userResp);
         return userResp;
     }
-
 }
