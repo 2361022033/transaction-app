@@ -1,8 +1,8 @@
 package junfukt.com.service;
 
-import junfukt.com.controller.dto.UserAddReq;
-import junfukt.com.controller.dto.UserResp;
-import junfukt.com.controller.dto.UserUpdateReq;
+import junfukt.com.controller.user.dto.UserAddReq;
+import junfukt.com.controller.user.dto.UserResp;
+import junfukt.com.controller.user.dto.UserUpdateReq;
 import junfukt.com.utils.BasePageReq;
 import junfukt.com.utils.BasePageResp;
 

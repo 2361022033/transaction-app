@@ -1,10 +1,10 @@
-package junfukt.com.controller;
+package junfukt.com.controller.user;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
-import junfukt.com.controller.dto.UserAddReq;
-import junfukt.com.controller.dto.UserResp;
-import junfukt.com.controller.dto.UserUpdateReq;
+import junfukt.com.controller.user.dto.UserAddReq;
+import junfukt.com.controller.user.dto.UserResp;
+import junfukt.com.controller.user.dto.UserUpdateReq;
 import junfukt.com.service.UserService;
 import junfukt.com.utils.BasePageReq;
 import junfukt.com.utils.BasePageResp;

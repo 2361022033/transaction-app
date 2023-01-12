@@ -1,7 +1,7 @@
 package junfukt.com.domain.mapper;
 
 import junfukt.com.domain.entity.User;
-import junfukt.com.controller.dto.UserUpdateReq;
+import junfukt.com.controller.user.dto.UserUpdateReq;
 import junfukt.com.utils.BasePageReq;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

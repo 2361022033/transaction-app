@@ -1,6 +1,6 @@
-package junfukt.com.controller.convert;
+package junfukt.com.controller.user.convert;
 
-import junfukt.com.controller.dto.UserResp;
+import junfukt.com.controller.user.dto.UserResp;
 import junfukt.com.domain.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

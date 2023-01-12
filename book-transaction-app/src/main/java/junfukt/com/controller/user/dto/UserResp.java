@@ -1,10 +1,9 @@
-package junfukt.com.controller.dto;
+package junfukt.com.controller.user.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 

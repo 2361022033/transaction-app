@@ -1,10 +1,9 @@
 package junfukt.com.service.impl;
 
-import com.google.common.collect.Lists;
-import junfukt.com.controller.convert.UserConvert;
-import junfukt.com.controller.dto.UserAddReq;
-import junfukt.com.controller.dto.UserResp;
-import junfukt.com.controller.dto.UserUpdateReq;
+import junfukt.com.controller.user.convert.UserConvert;
+import junfukt.com.controller.user.dto.UserAddReq;
+import junfukt.com.controller.user.dto.UserResp;
+import junfukt.com.controller.user.dto.UserUpdateReq;
 import junfukt.com.domain.entity.User;
 import junfukt.com.domain.mapper.UserMapper;
 import junfukt.com.service.UserService;
