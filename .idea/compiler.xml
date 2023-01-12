@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="book-transaction-app" />
         <module name="junfukt-provider" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="book-transaction-app" options="-parameters" />
       <module name="junfukt-StudyTest" options="-parameters" />
       <module name="junfukt-api" options="-parameters" />
       <module name="junfukt-provider" options="-parameters" />
