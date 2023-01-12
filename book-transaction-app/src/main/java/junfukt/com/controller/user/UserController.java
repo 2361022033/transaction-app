@@ -27,7 +27,6 @@ public class UserController {
 
     @RequestMapping("/test")
     public void test() {
-        System.out.println("启动测试成功");
         log.info("这是测试成功的slf4j日志:"+(20L/10L+ 1L));
     }
 
