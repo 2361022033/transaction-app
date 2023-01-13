@@ -18,6 +18,8 @@
     <result column="image_four" property="imageFour" jdbcType="VARCHAR" />
     <result column="video" property="video" jdbcType="VARCHAR" />
     <result column="saller_id" property="sallerId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="BIGINT" />
+    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>

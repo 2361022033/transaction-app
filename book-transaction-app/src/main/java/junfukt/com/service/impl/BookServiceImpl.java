@@ -3,6 +3,8 @@ package junfukt.com.service.impl;
 import junfukt.com.controller.book.convert.BookConvert;
 import junfukt.com.controller.book.dto.BookAddReq;
 import junfukt.com.controller.book.dto.BookDetailResp;
+import junfukt.com.dictionaries.BookStatus;
+import junfukt.com.dictionaries.BookTypeEnum;
 import junfukt.com.domain.entity.BookInfo;
 import junfukt.com.domain.mapper.BookInfoMapper;
 import junfukt.com.service.BookService;
@@ -26,7 +28,12 @@ public class BookServiceImpl implements BookService {
     @Override
     public void add(BookAddReq bookAddReq) {
         // 用户信息应该去缓存中获取 todo
-        bookInfoMapper.insertSelective(BookConvert.INSTANCE.convert(bookAddReq));
+//        bookAddReq.setSallerId();
+        BookInfo info = BookConvert.INSTANCE.convert(bookAddReq);
+        info.setStatus(BookStatus.ON_SALE);
+        bookInfoMapper.insertSelective(info);
+        // 用户的在售数量+1
+
     }
 
 

@@ -7,7 +7,7 @@ import junfukt.com.domain.entity.BookInfo;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-01-12T17:03:28+0800",
+    date = "2023-01-13T13:10:31+0800",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 1.8.0_191 (Oracle Corporation)"
 )
 public class BookConvertImpl implements BookConvert {
@@ -35,6 +35,8 @@ public class BookConvertImpl implements BookConvert {
         bookDetailResp.setImageFour( bookInfo.getImageFour() );
         bookDetailResp.setVideo( bookInfo.getVideo() );
         bookDetailResp.setSallerId( bookInfo.getSallerId() );
+        bookDetailResp.setStatus( bookInfo.getStatus() );
+        bookDetailResp.setIsDeleted( bookInfo.getIsDeleted() );
         bookDetailResp.setCreateTime( bookInfo.getCreateTime() );
         bookDetailResp.setUpdateTime( bookInfo.getUpdateTime() );
 

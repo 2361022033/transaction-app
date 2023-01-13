@@ -90,6 +90,16 @@ public class BookInfo implements Serializable {
     private Long sallerId;
 
     /**
+     * 状态:1(在售),0(已售)
+     */
+    private Integer status;
+
+    /**
+     * 是否删除
+     */
+    private Boolean isDeleted;
+
+    /**
      * 创建时间
      */
     private Date createTime;
