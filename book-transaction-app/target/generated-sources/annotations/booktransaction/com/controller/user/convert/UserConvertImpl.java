@@ -1,7 +1,5 @@
 package booktransaction.com.controller.user.convert;
 
-import booktransaction.com.controller.user.dto.UserResp;
-import booktransaction.com.domain.entity.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
