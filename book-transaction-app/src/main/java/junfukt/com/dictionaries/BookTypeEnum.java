@@ -15,13 +15,11 @@ public enum BookTypeEnum {
     YANQING("言情");
 
     private final String value;
-
     BookTypeEnum(String value){
         this.value = value;
     }
     public String getValue(){
         return value;
     }
-
 
 }

@@ -1,7 +1,8 @@
-package junfukt.com.controller.book.dto;
-
+package junfukt.com.controller.book.dto.resp;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,8 +12,13 @@ import java.util.Date;
 
 @Data
 @Accessors(chain = true)
-public class BookAddReq implements Serializable {
+public class BookDetailResp implements Serializable {
     private static final long serialVersionUID = 1L;
+    /**
+     * id
+     */
+    private Long id;
+
     /**
      * 书名
      */
@@ -82,4 +88,26 @@ public class BookAddReq implements Serializable {
      * 卖家id
      */
     private Long sallerId;
+
+    /**
+     * 状态:1(在售),0(已售)
+     */
+    private Integer status;
+
+    /**
+     * 是否删除
+     */
+    private Boolean isDeleted;
+
+    /**
+     * 创建时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createTime;
+
+    /**
+     * 修改时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date updateTime;
 }

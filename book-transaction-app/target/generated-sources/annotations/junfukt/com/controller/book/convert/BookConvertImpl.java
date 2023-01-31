@@ -1,13 +1,16 @@
 package junfukt.com.controller.book.convert;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Generated;
-import junfukt.com.controller.book.dto.BookAddReq;
-import junfukt.com.controller.book.dto.BookDetailResp;
+import junfukt.com.controller.book.dto.req.BookAddReq;
+import junfukt.com.controller.book.dto.req.BookUpdateReq;
+import junfukt.com.controller.book.dto.resp.BookDetailResp;
 import junfukt.com.domain.entity.BookInfo;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-01-13T13:10:31+0800",
+    date = "2023-01-31T13:33:33+0800",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 1.8.0_191 (Oracle Corporation)"
 )
 public class BookConvertImpl implements BookConvert {
@@ -44,28 +47,68 @@ public class BookConvertImpl implements BookConvert {
     }
 
     @Override
-    public BookInfo convert(BookAddReq bookInfo) {
-        if ( bookInfo == null ) {
+    public BookInfo convert(BookAddReq req) {
+        if ( req == null ) {
             return null;
         }
 
-        BookInfo bookInfo1 = new BookInfo();
+        BookInfo bookInfo = new BookInfo();
 
-        bookInfo1.setBookName( bookInfo.getBookName() );
-        bookInfo1.setWriter( bookInfo.getWriter() );
-        bookInfo1.setPublishingHouse( bookInfo.getPublishingHouse() );
-        bookInfo1.setDescription( bookInfo.getDescription() );
-        bookInfo1.setPriceOriginal( bookInfo.getPriceOriginal() );
-        bookInfo1.setPriceNow( bookInfo.getPriceNow() );
-        bookInfo1.setTypeFirst( bookInfo.getTypeFirst() );
-        bookInfo1.setTypeSecond( bookInfo.getTypeSecond() );
-        bookInfo1.setImageOne( bookInfo.getImageOne() );
-        bookInfo1.setImageTwo( bookInfo.getImageTwo() );
-        bookInfo1.setImageThree( bookInfo.getImageThree() );
-        bookInfo1.setImageFour( bookInfo.getImageFour() );
-        bookInfo1.setVideo( bookInfo.getVideo() );
-        bookInfo1.setSallerId( bookInfo.getSallerId() );
+        bookInfo.setBookName( req.getBookName() );
+        bookInfo.setWriter( req.getWriter() );
+        bookInfo.setPublishingHouse( req.getPublishingHouse() );
+        bookInfo.setDescription( req.getDescription() );
+        bookInfo.setPriceOriginal( req.getPriceOriginal() );
+        bookInfo.setPriceNow( req.getPriceNow() );
+        bookInfo.setTypeFirst( req.getTypeFirst() );
+        bookInfo.setTypeSecond( req.getTypeSecond() );
+        bookInfo.setImageOne( req.getImageOne() );
+        bookInfo.setImageTwo( req.getImageTwo() );
+        bookInfo.setImageThree( req.getImageThree() );
+        bookInfo.setImageFour( req.getImageFour() );
+        bookInfo.setVideo( req.getVideo() );
+        bookInfo.setSallerId( req.getSallerId() );
 
-        return bookInfo1;
+        return bookInfo;
+    }
+
+    @Override
+    public List<BookDetailResp> convert(List<BookInfo> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<BookDetailResp> list1 = new ArrayList<BookDetailResp>( list.size() );
+        for ( BookInfo bookInfo : list ) {
+            list1.add( convert( bookInfo ) );
+        }
+
+        return list1;
+    }
+
+    @Override
+    public BookInfo convert(BookUpdateReq req) {
+        if ( req == null ) {
+            return null;
+        }
+
+        BookInfo bookInfo = new BookInfo();
+
+        bookInfo.setId( req.getId() );
+        bookInfo.setBookName( req.getBookName() );
+        bookInfo.setWriter( req.getWriter() );
+        bookInfo.setPublishingHouse( req.getPublishingHouse() );
+        bookInfo.setDescription( req.getDescription() );
+        bookInfo.setPriceOriginal( req.getPriceOriginal() );
+        bookInfo.setPriceNow( req.getPriceNow() );
+        bookInfo.setTypeFirst( req.getTypeFirst() );
+        bookInfo.setTypeSecond( req.getTypeSecond() );
+        bookInfo.setImageOne( req.getImageOne() );
+        bookInfo.setImageTwo( req.getImageTwo() );
+        bookInfo.setImageThree( req.getImageThree() );
+        bookInfo.setImageFour( req.getImageFour() );
+        bookInfo.setVideo( req.getVideo() );
+
+        return bookInfo;
     }
 }
