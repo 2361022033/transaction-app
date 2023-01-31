@@ -1,48 +1,32 @@
 package booktransaction.com.controller.user.convert;
 
-import java.util.ArrayList;
-import java.util.List;
+import booktransaction.com.controller.user.dto.req.UserAddReq;
+import booktransaction.com.domain.entity.UserInfo;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-01-31T13:47:37+0800",
+    date = "2023-01-31T14:41:22+0800",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 1.8.0_191 (Oracle Corporation)"
 )
 public class UserConvertImpl implements UserConvert {
 
     @Override
-    public UserResp convert(User user) {
-        if ( user == null ) {
+    public UserInfo convert(UserAddReq req) {
+        if ( req == null ) {
             return null;
         }
 
-        UserResp userResp = new UserResp();
+        UserInfo userInfo = new UserInfo();
 
-        userResp.setId( user.getId() );
-        userResp.setUserId( user.getUserId() );
-        userResp.setStaffNo( user.getStaffNo() );
-        userResp.setRealName( user.getRealName() );
-        userResp.setNickName( user.getNickName() );
-        userResp.setAvatar( user.getAvatar() );
-        userResp.setIntroduction( user.getIntroduction() );
-        userResp.setCreateTime( user.getCreateTime() );
-        userResp.setUpdateTime( user.getUpdateTime() );
+        userInfo.setUserName( req.getUserName() );
+        userInfo.setPassword( req.getPassword() );
+        userInfo.setRealName( req.getRealName() );
+        userInfo.setSex( req.getSex() );
+        userInfo.setNickName( req.getNickName() );
+        userInfo.setAvatar( req.getAvatar() );
+        userInfo.setIntroduction( req.getIntroduction() );
 
-        return userResp;
-    }
-
-    @Override
-    public List<UserResp> convert(List<User> user) {
-        if ( user == null ) {
-            return null;
-        }
-
-        List<UserResp> list = new ArrayList<UserResp>( user.size() );
-        for ( User user1 : user ) {
-            list.add( convert( user1 ) );
-        }
-
-        return list;
+        return userInfo;
     }
 }

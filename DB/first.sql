@@ -8,7 +8,7 @@ CREATE TABLE
 (
     id              bigint unsigned NOT NULL AUTO_INCREMENT COMMENT 'PK',
     user_name       VARCHAR(32)                        NOT NULL COMMENT '用户名',
-    password        VARCHAR(64)                        NOT NULL COMMENT '密码',
+    password        VARCHAR(256)                       NOT NULL COMMENT '密码',
     real_name       VARCHAR(32) COMMENT '真实姓名',
     sex             bigint   DEFAULT 0                 NOT NULL COMMENT '性别',
     nick_name       VARCHAR(32)                        NOT NULL COMMENT '昵称',
@@ -20,6 +20,7 @@ CREATE TABLE
     on_sale_number  bigint unsigned DEFAULT 0 NOT NULL COMMENT '在售数量',
     create_time     DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     update_time     DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '修改时间',
+    is_deleted      tinyint unsigned DEFAULT 0 NOT NULL COMMENT '是否删除',
     PRIMARY KEY (id),
     CONSTRAINT uk_user_name UNIQUE (user_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表';
@@ -43,7 +44,7 @@ CREATE TABLE book_info
     video            VARCHAR(256) COMMENT '视频地址',
     saller_id        bigint unsigned NOT NULL COMMENT '卖家id',
     status           bigint unsigned DEFAULT 1 NOT NULL COMMENT '状态:1(在售),0(已售)',
-    is_deleted        tinyint unsigned DEFAULT 0 NOT NULL COMMENT '是否删除',
+    is_deleted       tinyint unsigned DEFAULT 0 NOT NULL COMMENT '是否删除',
     create_time      DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time      DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     PRIMARY KEY (id)

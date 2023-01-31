@@ -82,4 +82,9 @@ public class UserInfo {
      */
     private Date updateTime;
 
+    /**
+     * 是否删除
+     */
+    private Boolean isDeleted;
+
 }

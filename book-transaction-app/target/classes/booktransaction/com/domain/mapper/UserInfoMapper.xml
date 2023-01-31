@@ -16,6 +16,13 @@
     <result column="on_sale_number" property="onSaleNumber" jdbcType="BIGINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
   </resultMap>
+  <select id="selectByUserName" resultMap="BaseResultMap">
+    select * from user_info where user_name = #{userName} and is_deleted = 0
+  </select>
+
+
+
 
 </mapper>
