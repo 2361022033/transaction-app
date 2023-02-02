@@ -2,18 +2,18 @@ package booktransaction.com.controller.user;
 
 import booktransaction.com.controller.user.dto.req.UserAddReq;
 import booktransaction.com.controller.user.dto.req.UserLoginReq;
+import booktransaction.com.infrastructure.HttpResult;
 import booktransaction.com.service.UserService;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/user")
 @Slf4j
+@CrossOrigin
 public class UserInfoController {
     @Resource
    private UserService userService;
@@ -26,8 +26,9 @@ public class UserInfoController {
 
     @ApiModelProperty("用户登录")
     @PostMapping(value = "/login",name = "用户登录")
-    public void login(UserLoginReq req){
+    public HttpResult login(@RequestBody UserLoginReq req){
         userService.login(req);
+        return HttpResult.success();
     }
 
 }

@@ -6,7 +6,7 @@ import booktransaction.com.controller.user.dto.req.UserLoginReq;
 import booktransaction.com.domain.entity.UserInfo;
 import booktransaction.com.domain.mapper.UserInfoMapper;
 import booktransaction.com.service.UserService;
-import booktransaction.com.utils.ServiceExcpetion;
+import booktransaction.com.infrastructure.ServiceExcpetion;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

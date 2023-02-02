@@ -1,4 +1,4 @@
-package booktransaction.com.utils;
+package booktransaction.com.infrastructure;
 
 public final class ServiceExcpetion extends RuntimeException{
     private static final long serialVersionUID = 5976206518383488589L;

@@ -9,9 +9,9 @@ import booktransaction.com.dictionaries.BookStatus;
 import booktransaction.com.domain.entity.BookInfo;
 import booktransaction.com.domain.mapper.BookInfoMapper;
 import booktransaction.com.service.BookService;
-import booktransaction.com.utils.BasePageResp;
+import booktransaction.com.infrastructure.BasePageResp;
 import booktransaction.com.utils.PageResultUtils;
-import booktransaction.com.utils.ServiceExcpetion;
+import booktransaction.com.infrastructure.ServiceExcpetion;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

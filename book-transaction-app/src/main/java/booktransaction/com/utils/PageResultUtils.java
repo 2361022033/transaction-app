@@ -1,5 +1,7 @@
 package booktransaction.com.utils;
 
+import booktransaction.com.infrastructure.BasePageReq;
+import booktransaction.com.infrastructure.BasePageResp;
 import com.google.common.collect.Lists;
 
 import java.util.List;
