@@ -3,6 +3,7 @@ package booktransaction.com.service.impl;
 import booktransaction.com.controller.user.convert.UserConvert;
 import booktransaction.com.controller.user.dto.req.UserAddReq;
 import booktransaction.com.controller.user.dto.req.UserLoginReq;
+import booktransaction.com.controller.user.dto.resp.LookOtherResp;
 import booktransaction.com.domain.entity.UserInfo;
 import booktransaction.com.domain.mapper.UserInfoMapper;
 import booktransaction.com.service.UserService;
@@ -46,6 +47,10 @@ public class UserServiceImpl implements UserService {
         userInfoMapper.insertSelective(in);
     }
 
+    /**
+     * 登录
+     * @param req
+     */
     @Override
     public void login(UserLoginReq req) {
         UserInfo user = userInfoMapper.selectByUserName(req.getUserName());
@@ -65,6 +70,16 @@ public class UserServiceImpl implements UserService {
             throw new ServiceExcpetion(500,"密码不正确");
         }
         log.info("用户名[{}],登录成功",user.getUserName());
+    }
+
+    /**
+     * 查看他人用户信息
+     * @param userId
+     * @return
+     */
+    @Override
+    public LookOtherResp lookOther(String userId) {
+        return UserConvert.INSTANCE.convert(userInfoMapper.selectByPrimaryKey(userId));
     }
 
 

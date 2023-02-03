@@ -1,12 +1,13 @@
 package booktransaction.com.controller.user.convert;
 
 import booktransaction.com.controller.user.dto.req.UserAddReq;
+import booktransaction.com.controller.user.dto.resp.LookOtherResp;
 import booktransaction.com.domain.entity.UserInfo;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-01-31T14:41:22+0800",
+    date = "2023-02-03T14:05:39+0800",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 1.8.0_191 (Oracle Corporation)"
 )
 public class UserConvertImpl implements UserConvert {
@@ -28,5 +29,24 @@ public class UserConvertImpl implements UserConvert {
         userInfo.setIntroduction( req.getIntroduction() );
 
         return userInfo;
+    }
+
+    @Override
+    public LookOtherResp convert(UserInfo userInfo) {
+        if ( userInfo == null ) {
+            return null;
+        }
+
+        LookOtherResp lookOtherResp = new LookOtherResp();
+
+        lookOtherResp.setId( userInfo.getId() );
+        lookOtherResp.setSex( userInfo.getSex() );
+        lookOtherResp.setNickName( userInfo.getNickName() );
+        lookOtherResp.setAvatar( userInfo.getAvatar() );
+        lookOtherResp.setIntroduction( userInfo.getIntroduction() );
+        lookOtherResp.setSoldOutNumber( userInfo.getSoldOutNumber() );
+        lookOtherResp.setOnSaleNumber( userInfo.getOnSaleNumber() );
+
+        return lookOtherResp;
     }
 }
