@@ -3,13 +3,19 @@ package booktransaction.com.controller.user;
 import booktransaction.com.controller.user.dto.req.UserAddReq;
 import booktransaction.com.controller.user.dto.req.UserLoginReq;
 import booktransaction.com.controller.user.dto.resp.LookOtherResp;
+import booktransaction.com.domain.entity.UserInfo;
 import booktransaction.com.infrastructure.HttpResult;
+import booktransaction.com.infrastructure.filter.TokenEntity;
 import booktransaction.com.service.UserService;
+import com.alibaba.fastjson2.JSON;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 
 @RestController
@@ -20,10 +26,35 @@ public class UserInfoController {
     @Resource
    private UserService userService;
 
+    public static void main(String[] args) {
+        log.info("测试="+new Date());
+        try {
+            SimpleDateFormat sdfymdTime = new SimpleDateFormat("yyyyMMddHHmmss");
+            Date parse = sdfymdTime.parse("20230203170000");
+            TokenEntity tokenEntity = new TokenEntity().setUserName("001").setRoot("book-transaction").setOverdueTime(parse);
+            String tokenS = JSON.toJSONString(tokenEntity);
+            String encodedString = Base64.getEncoder().encodeToString(tokenS.getBytes());
+            System.out.println(encodedString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     @ApiModelProperty("测试")
     @PostMapping(value = "/test",name = "测试")
-    public HttpResult test(){
+    public HttpResult<String> test(String userId){
         log.info("测试="+new Date());
+        try {
+            SimpleDateFormat sdfymdTime = new SimpleDateFormat("yyyyMMddHHmmss");
+            Date parse = sdfymdTime.parse("20230203170000");
+            TokenEntity tokenEntity = new TokenEntity().setUserName(userId).setRoot("book-transaction").setOverdueTime(parse);
+            String tokenS = JSON.toJSONString(tokenEntity);
+            String encodedString = Base64.getEncoder().encodeToString(tokenS.getBytes());
+            System.out.println(encodedString);
+            return HttpResult.success(encodedString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return HttpResult.success();
     }
 

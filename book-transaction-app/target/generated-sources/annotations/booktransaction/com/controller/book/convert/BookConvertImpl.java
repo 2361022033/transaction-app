@@ -10,7 +10,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-01-31T13:47:37+0800",
+    date = "2023-02-03T15:46:00+0800",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 1.8.0_191 (Oracle Corporation)"
 )
 public class BookConvertImpl implements BookConvert {

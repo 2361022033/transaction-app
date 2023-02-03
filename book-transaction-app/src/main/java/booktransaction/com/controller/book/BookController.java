@@ -4,7 +4,7 @@ import booktransaction.com.controller.book.dto.req.BookAddReq;
 import booktransaction.com.controller.book.dto.req.BookPageReq;
 import booktransaction.com.controller.book.dto.req.BookUpdateReq;
 import booktransaction.com.controller.book.dto.resp.BookDetailResp;
-import booktransaction.com.infrastructure.BasePageResp;
+import booktransaction.com.infrastructure.page.BasePageResp;
 import booktransaction.com.infrastructure.HttpResult;
 import booktransaction.com.service.BookService;
 import lombok.extern.slf4j.Slf4j;

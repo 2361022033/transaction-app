@@ -1,6 +1,6 @@
 package booktransaction.com.controller.book.dto.req;
 
-import booktransaction.com.infrastructure.BasePageReq;
+import booktransaction.com.infrastructure.page.BasePageReq;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

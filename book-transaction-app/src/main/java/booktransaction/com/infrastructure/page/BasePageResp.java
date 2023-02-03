@@ -1,4 +1,4 @@
-package booktransaction.com.infrastructure;
+package booktransaction.com.infrastructure.page;
 
 import java.io.Serializable;
 import java.util.List;
