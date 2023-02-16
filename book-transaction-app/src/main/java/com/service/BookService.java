@@ -5,6 +5,7 @@ import com.controller.book.dto.req.BookAddReq;
 import com.controller.book.dto.req.BookPageReq;
 import com.controller.book.dto.req.BookUpdateReq;
 import com.controller.book.dto.resp.BookDetailResp;
+import com.domain.entity.BookInfo;
 import com.infrastructure.page.BasePageResp;
 
 public interface BookService {
@@ -18,12 +19,12 @@ public interface BookService {
      * @param req
      * @return
      */
-    BasePageResp<BookDetailResp> page(BookPageReq req);
+    BasePageResp<BookInfo> page(BookPageReq req);
     /**
      * 图书详情
      * @param bookId
      */
-    BookDetailResp detail(Long bookId);
+    BookInfo detail(Long bookId);
 
     /**
      * 编辑图书

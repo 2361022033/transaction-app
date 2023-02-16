@@ -8,15 +8,14 @@ import com.controller.book.dto.resp.BookDetailResp;
 import com.dictionaries.BookStatus;
 import com.domain.entity.BookInfo;
 import com.domain.mapper.BookInfoMapper;
-import com.service.BookService;
+import com.infrastructure.ServiceExcpetion;
 import com.infrastructure.page.BasePageResp;
 import com.infrastructure.page.PageResultUtils;
-import com.infrastructure.ServiceExcpetion;
+import com.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -49,13 +48,12 @@ public class BookServiceImpl implements BookService {
      * @return
      */
     @Override
-    public BasePageResp<BookDetailResp> page(BookPageReq req) {
+    public BasePageResp<BookInfo> page(BookPageReq req) {
         Long count = bookInfoMapper.pageCount(req);
         if (count < 1) {
             return PageResultUtils.defaultPageResult(req);
         }
-        List<BookInfo> list = bookInfoMapper.page(req);
-        return PageResultUtils.buildPageResult(req, count, BookConvert.INSTANCE.convert(list));
+        return PageResultUtils.buildPageResult(req, count, bookInfoMapper.page(req));
     }
 
     /**
@@ -65,7 +63,7 @@ public class BookServiceImpl implements BookService {
      * @return
      */
     @Override
-    public BookDetailResp detail(Long bookId) {
+    public BookInfo detail(Long bookId) {
         if (Objects.isNull(bookId)) {
             throw new ServiceExcpetion(500, "图书id不能为空!");
         }
@@ -73,7 +71,7 @@ public class BookServiceImpl implements BookService {
         if (Objects.isNull(bookInfo)) {
             throw new ServiceExcpetion(500, "图书已不存在!");
         }
-        return BookConvert.INSTANCE.convert(bookInfo);
+        return bookInfo;
     }
 
     /**

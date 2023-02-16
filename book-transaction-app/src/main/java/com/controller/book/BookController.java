@@ -1,5 +1,6 @@
 package com.controller.book;
 
+import com.controller.book.convert.BookConvert;
 import com.controller.book.dto.req.BookAddReq;
 import com.controller.book.dto.req.BookPageReq;
 import com.controller.book.dto.req.BookUpdateReq;
@@ -29,13 +30,13 @@ public class BookController {
     @ApiOperation(value = "图书分页列表")
     @GetMapping(value = "/page", name = "图书分页列表")
     public HttpResult<BasePageResp<BookDetailResp>> page(BookPageReq req) {
-        return HttpResult.success(bookService.page(req));
+        return HttpResult.success(BookConvert.INSTANCE.convert(bookService.page(req)));
     }
 
     @ApiOperation(value = "图书详情")
     @GetMapping(value = "/detail", name = "图书详情")
     public HttpResult<BookDetailResp> detail(@RequestParam("bookId") Long bookId) {
-        return HttpResult.success(bookService.detail(bookId));
+        return HttpResult.success(BookConvert.INSTANCE.convert(bookService.detail(bookId)));
     }
 
     @ApiOperation(value = "编辑图书")
