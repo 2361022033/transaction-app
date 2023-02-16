@@ -3,7 +3,7 @@ package booktransaction.com.infrastructure.filter;
 import booktransaction.com.domain.entity.UserInfo;
 
 /**
- *
+ * 用户信息缓存
  */
 public class UserInfoCache {
 

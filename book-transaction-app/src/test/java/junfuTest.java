@@ -1,4 +1,8 @@
+import cn.hutool.extra.spring.SpringUtil;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -7,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = junfuTest.class)
 public class junfuTest {
     @Test
     public void dateformat() {

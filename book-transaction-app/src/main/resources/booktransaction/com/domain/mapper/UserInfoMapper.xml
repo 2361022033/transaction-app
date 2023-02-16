@@ -22,7 +22,9 @@
     select * from user_info where user_name = #{userName} and is_deleted = 0
   </select>
 
-
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select * from user_info where id = #{userId} and is_deleted = 0
+  </select>
 
 
 </mapper>

@@ -2,6 +2,7 @@ package booktransaction.com.controller.user.convert;
 
 import booktransaction.com.controller.user.dto.req.UserAddReq;
 import booktransaction.com.controller.user.dto.resp.LookOtherResp;
+import booktransaction.com.controller.user.dto.resp.MyInfoResp;
 import booktransaction.com.domain.entity.UserInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -10,7 +11,7 @@ import org.mapstruct.factory.Mappers;
 public interface UserConvert {
     UserConvert INSTANCE = Mappers.getMapper(UserConvert.class);
     UserInfo convert(UserAddReq req);
-
-    LookOtherResp convert(UserInfo userInfo);
+    LookOtherResp userInfo2LookOtherResp(UserInfo userInfo);
+    MyInfoResp userInfo2MyInfoResp(UserInfo userInfo);
 
 }

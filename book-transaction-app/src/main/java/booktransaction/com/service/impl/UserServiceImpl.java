@@ -3,7 +3,6 @@ package booktransaction.com.service.impl;
 import booktransaction.com.controller.user.convert.UserConvert;
 import booktransaction.com.controller.user.dto.req.UserAddReq;
 import booktransaction.com.controller.user.dto.req.UserLoginReq;
-import booktransaction.com.controller.user.dto.resp.LookOtherResp;
 import booktransaction.com.domain.entity.UserInfo;
 import booktransaction.com.domain.mapper.UserInfoMapper;
 import booktransaction.com.service.UserService;
@@ -61,7 +60,7 @@ public class UserServiceImpl implements UserService {
         try {
             MessageDigest md5 = MessageDigest.getInstance(KEY_MD5);
             md5.update(req.getPassword().getBytes(StandardCharsets.UTF_8));
-             password = Arrays.toString(md5.digest());
+            password = Arrays.toString(md5.digest());
         } catch (Exception e) {
             log.error("注册密码加密异常:", e);
             throw new ServiceExcpetion(500,"注册密码加密异常");
@@ -73,14 +72,15 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 查看他人用户信息
+     * id查询用户信息
      * @param userId
      * @return
      */
     @Override
-    public LookOtherResp lookOther(String userId) {
-        return UserConvert.INSTANCE.convert(userInfoMapper.selectByPrimaryKey(userId));
+    public UserInfo findDetailByUserId(Long userId) {
+        return userInfoMapper.selectByUserId(userId);
     }
+
 
 
 }
