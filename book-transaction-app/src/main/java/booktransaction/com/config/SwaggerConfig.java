@@ -1,9 +1,9 @@
 package booktransaction.com.config;
 
+import io.swagger.annotations.Api;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
@@ -20,8 +20,9 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo()).enable(true)
                 .select()
                 //apis： 添加swagger接口提取范围
-                .apis(RequestHandlerSelectors.basePackage("com.controller"))
-                .paths(PathSelectors.any())
+//                .apis(RequestHandlerSelectors.basePackage("com.controller"))
+                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
+//                .paths(PathSelectors.any())
                 .build();
 
         return docket;

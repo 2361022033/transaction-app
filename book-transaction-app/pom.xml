@@ -35,6 +35,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <dependency>
+        <!-- swagger3使用时和spring-plugin-core 1.2.0版本冲突，所以只能强制升级到2.0.0-->
+            <groupId>org.springframework.plugin</groupId>
+            <artifactId>spring-plugin-core</artifactId>
+            <version>2.0.0.RELEASE</version>
+        </dependency>
         <!-- MyBatis启动包 -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
