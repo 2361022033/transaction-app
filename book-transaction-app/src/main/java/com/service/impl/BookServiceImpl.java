@@ -8,36 +8,47 @@ import com.controller.book.dto.resp.BookDetailResp;
 import com.dictionaries.BookStatus;
 import com.domain.entity.BookInfo;
 import com.domain.mapper.BookInfoMapper;
+import com.domain.mapper.UserInfoMapper;
 import com.infrastructure.ServiceExcpetion;
 import com.infrastructure.page.BasePageResp;
 import com.infrastructure.page.PageResultUtils;
+import com.infrastructure.threadPool.ThreadPoolConfig;
 import com.service.BookService;
+import com.service.in.BookAddIn;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Objects;
+import java.util.concurrent.Executor;
 
 @Slf4j
 @Service
 public class BookServiceImpl implements BookService {
     @Resource
     private BookInfoMapper bookInfoMapper;
+    @Resource
+    private UserInfoMapper userInfoMapper;
 
+    @Autowired
+    @Qualifier("onSaleNumServiceExecutor")
+    private Executor onSaleNumServiceExecutor;
     /**
      * 上架图书
      *
-     * @param bookAddReq
+     * @param in
      */
     @Override
-    public void add(BookAddReq bookAddReq) {
-        // 用户信息应该去缓存中获取 todo
-//        bookAddReq.setSallerId();
-        BookInfo info = BookConvert.INSTANCE.convert(bookAddReq);
+    public void add(BookAddIn in) {
+        BookInfo info =new BookInfo();
+        BeanUtils.copyProperties(in,info);
         info.setStatus(BookStatus.ON_SALE);
         bookInfoMapper.insertSelective(info);
         // 用户的在售数量+1
-
+        onSaleNumServiceExecutor.execute(()->userInfoMapper.updateOnSaleNumber(in.getSallerId()));
     }
 
 

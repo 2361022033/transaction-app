@@ -1,19 +1,18 @@
 package com.service;
 
 
-import com.controller.book.dto.req.BookAddReq;
 import com.controller.book.dto.req.BookPageReq;
 import com.controller.book.dto.req.BookUpdateReq;
-import com.controller.book.dto.resp.BookDetailResp;
 import com.domain.entity.BookInfo;
 import com.infrastructure.page.BasePageResp;
+import com.service.in.BookAddIn;
 
 public interface BookService {
     /**
      * 上架图书
-     * @param bookAddReq
+     * @param in
      */
-    void add(BookAddReq bookAddReq);
+    void add(BookAddIn in);
     /**
      * 图书分页列表
      * @param req

@@ -5,6 +5,7 @@ import com.controller.book.dto.req.BookUpdateReq;
 import com.controller.book.dto.resp.BookDetailResp;
 import com.domain.entity.BookInfo;
 import com.infrastructure.page.BasePageResp;
+import com.service.in.BookAddIn;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -25,4 +26,5 @@ public interface BookConvert {
     BookInfo convert(BookUpdateReq req);
 
 
+    BookAddIn bookAddReq2In(BookAddReq req);
 }

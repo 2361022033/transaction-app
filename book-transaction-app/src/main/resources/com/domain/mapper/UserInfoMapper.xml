@@ -26,5 +26,8 @@
     select * from user_info where id = #{userId} and is_deleted = 0
   </select>
 
+  <update id="updateOnSaleNumber">
+    update user_info set on_sale_number = on_sale_number + 1 where id = #{userId}
+  </update>
 
 </mapper>

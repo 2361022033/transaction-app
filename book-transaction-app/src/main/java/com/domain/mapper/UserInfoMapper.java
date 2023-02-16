@@ -11,4 +11,6 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
     UserInfo selectByUserName(@Param("userName") String userName);
 
     UserInfo selectByUserId(@Param("userId") Long userId);
+
+    int updateOnSaleNumber(@Param("userId")Long userId);
 }
