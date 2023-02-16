@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
+/**
+ * 查看他人信息-出参
+ */
 @Data
 @Accessors(chain = true)
 public class LookOtherResp {

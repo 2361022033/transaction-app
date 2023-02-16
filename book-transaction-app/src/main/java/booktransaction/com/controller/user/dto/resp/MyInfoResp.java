@@ -1,64 +1,47 @@
 package booktransaction.com.controller.user.dto.resp;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+/**
+ * 我的信息-出参
+ */
 @Data
 @Accessors(chain = true)
 public class MyInfoResp {
-    /**
-     * PK
-     */
+
+    @ApiModelProperty("id")
     private Long id;
 
-    /**
-     * 用户名
-     */
+    @ApiModelProperty("用户名")
     private String userName;
 
-    /**
-     * 真实姓名
-     */
+    @ApiModelProperty("真实姓名")
     private String realName;
 
-    /**
-     * 性别
-     */
+    @ApiModelProperty("性别")
     private Long sex;
 
-    /**
-     * 昵称
-     */
+    @ApiModelProperty("昵称")
     private String nickName;
 
-    /**
-     * 头像
-     */
+    @ApiModelProperty("头像")
     private String avatar;
 
-    /**
-     * 个性签名
-     */
+    @ApiModelProperty("个性签名")
     private String introduction;
 
-    /**
-     * 账户余额
-     */
+    @ApiModelProperty("账户余额")
     private Long balance;
 
-    /**
-     * 已买数量
-     */
+    @ApiModelProperty("已买数量")
     private Long bugNumber;
 
-    /**
-     * 已售数量
-     */
+    @ApiModelProperty("已售数量")
     private Long soldOutNumber;
 
-    /**
-     * 在售数量
-     */
+    @ApiModelProperty("在售数量")
     private Long onSaleNumber;
 
 

@@ -5,15 +5,14 @@ import booktransaction.com.controller.user.dto.req.UserAddReq;
 import booktransaction.com.controller.user.dto.req.UserLoginReq;
 import booktransaction.com.controller.user.dto.resp.LookOtherResp;
 import booktransaction.com.controller.user.dto.resp.MyInfoResp;
-import booktransaction.com.domain.entity.UserInfo;
 import booktransaction.com.infrastructure.HttpResult;
 import booktransaction.com.infrastructure.filter.TokenEntity;
 import booktransaction.com.service.UserService;
 import booktransaction.com.utils.UserInfoUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.fastjson2.JSON;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.extern.slf4j.Slf4j;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,30 +23,14 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/user")
-@Slf4j
-@CrossOrigin
+@Api(tags = {"用户接口"})
 public class UserInfoController {
     @Resource
     private UserService userService;
 
-    public static void main(String[] args) {
-        log.info("测试="+new Date());
-        try {
-            SimpleDateFormat sdfymdTime = new SimpleDateFormat("yyyyMMddHHmmss");
-            Date parse = sdfymdTime.parse("20240203170000");
-            TokenEntity tokenEntity = new TokenEntity().setUserName("002").setRoot("book-transaction").setOverdueTime(parse);
-            String tokenS = JSON.toJSONString(tokenEntity);
-            String encodedString = Base64.getEncoder().encodeToString(tokenS.getBytes());
-            System.out.println(encodedString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @ApiModelProperty("测试")
-    @PostMapping(value = "/test",name = "测试")
+    @ApiOperation(value = "测试")
+    @RequestMapping(value = "/test",name = "测试",method = {RequestMethod.PUT,RequestMethod.GET})
     public HttpResult<String> test(String userId){
-        log.info("测试="+new Date());
         try {
             System.out.println("配置文件："+ SpringUtil.getActiveProfile());
             SimpleDateFormat sdfymdTime = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -64,27 +47,26 @@ public class UserInfoController {
     }
 
 
-    @ApiModelProperty("用户注册")
+    @ApiOperation(value = "用户注册")
     @PostMapping(value = "/add",name = "用户注册")
     public HttpResult<Void> add(UserAddReq req){
         userService.add(req);
         return HttpResult.success();
     }
 
-    @ApiModelProperty("用户登录")
+    @ApiOperation(value = "用户登录")
     @PostMapping(value = "/login",name = "用户登录")
     public HttpResult<Void> login(@RequestBody UserLoginReq req){
         userService.login(req);
         return HttpResult.success();
     }
-
-    @ApiModelProperty("我的用户信息")
+    @ApiOperation(value = "我的用户信息")
     @GetMapping(value = "/myInfo",name = "我的用户信息")
     public HttpResult<MyInfoResp> myInfo(){
         return HttpResult.success(UserConvert.INSTANCE.userInfo2MyInfoResp(userService.findDetailByUserId(UserInfoUtil.getUserId())));
     }
 
-    @ApiModelProperty("查看他人用户信息")
+    @ApiOperation(value = "查看他人用户信息")
     @GetMapping(value = "/lookOther",name = "查看他人用户信息")
     public HttpResult<LookOtherResp> lookOther(@RequestParam("userId") Long userId){
         return HttpResult.success(UserConvert.INSTANCE.userInfo2LookOtherResp(userService.findDetailByUserId(userId)));
