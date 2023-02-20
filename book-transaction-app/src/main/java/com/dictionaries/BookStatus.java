@@ -10,4 +10,9 @@ public class BookStatus {
      * 在售
      */
     public static int ON_SALE = 1;
+
+    /**
+     * 被举报下架
+     */
+    public static int REPORT_OUT = 2;
 }

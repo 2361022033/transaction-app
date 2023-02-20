@@ -69,6 +69,8 @@ public class UserServiceImpl implements UserService {
             throw new ServiceExcpetion(500,"密码不正确");
         }
         log.info("用户名[{}],登录成功",user.getUserName());
+        // 生成token
+
     }
 
     /**
