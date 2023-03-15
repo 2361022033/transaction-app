@@ -1,5 +1,6 @@
 package com.service.impl;
 
+import cn.hutool.crypto.digest.DigestUtil;
 import com.controller.user.convert.UserConvert;
 import com.controller.user.dto.req.UserAddReq;
 import com.controller.user.dto.req.UserLoginReq;
@@ -35,14 +36,15 @@ public class UserServiceImpl implements UserService {
             throw new ServiceExcpetion(500,"用户名已被占用,请修改后重试!");
         }
         UserInfo in = UserConvert.INSTANCE.convert(req);
-        try {
-            MessageDigest md5 = MessageDigest.getInstance(KEY_MD5);
-            md5.update(req.getPassword().getBytes(StandardCharsets.UTF_8));
-            in.setPassword(Arrays.toString(md5.digest()));
-        } catch (Exception e) {
-            log.error("注册密码加密异常:", e);
-            throw new ServiceExcpetion(500,"注册密码加密异常");
-        }
+        in.setPassword(DigestUtil.md5Hex(req.getPassword()));
+//        try {
+//            MessageDigest md5 = MessageDigest.getInstance(KEY_MD5);
+//            md5.update(req.getPassword().getBytes(StandardCharsets.UTF_8));
+//            in.setPassword(Arrays.toString(md5.digest()));
+//        } catch (Exception e) {
+//            log.error("注册密码加密异常:", e);
+//            throw new ServiceExcpetion(500,"注册密码加密异常");
+//        }
         userInfoMapper.insertSelective(in);
     }
 
@@ -56,15 +58,15 @@ public class UserServiceImpl implements UserService {
         if (user==null){
             throw new ServiceExcpetion(500,"用户名不存在!");
         }
-        String password = "";
-        try {
-            MessageDigest md5 = MessageDigest.getInstance(KEY_MD5);
-            md5.update(req.getPassword().getBytes(StandardCharsets.UTF_8));
-            password = Arrays.toString(md5.digest());
-        } catch (Exception e) {
-            log.error("注册密码加密异常:", e);
-            throw new ServiceExcpetion(500,"注册密码加密异常");
-        }
+        String password = DigestUtil.md5Hex(req.getPassword());
+//        try {
+//            MessageDigest md5 = MessageDigest.getInstance(KEY_MD5);
+//            md5.update(req.getPassword().getBytes(StandardCharsets.UTF_8));
+//            password = Arrays.toString(md5.digest());
+//        } catch (Exception e) {
+//            log.error("注册密码加密异常:", e);
+//            throw new ServiceExcpetion(500,"注册密码加密异常");
+//        }
         if (!StrUtil.equals(password,user.getPassword())){
             throw new ServiceExcpetion(500,"密码不正确");
         }

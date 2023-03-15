@@ -1,15 +1,14 @@
+package Thread;
+
 import com.ProviderApplication;
 import com.controller.book.dto.req.BookPageReq;
 import com.domain.entity.BookInfo;
 import com.domain.mapper.BookInfoMapper;
-import com.infrastructure.page.BasePageResp;
-import com.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
@@ -20,10 +19,13 @@ import java.util.concurrent.*;
 @Slf4j
 @SpringBootTest(classes = ProviderApplication.class)
 @RunWith(SpringRunner.class)
-public class ThreadPoolTest {
+public class ThreadPoolTest{
 
     @Resource
     private BookInfoMapper bookInfoMapper;
+    @Resource
+    @Qualifier("onSaleNumServiceExecutor")
+    private Executor onSaleNumServiceExecutor;
 
     @Test
     public void test2() throws Exception {
@@ -31,12 +33,20 @@ public class ThreadPoolTest {
         Future<List<BookInfo>> submit = executorService.submit(() -> bookInfoMapper.page(new BookPageReq()));
         System.out.println(new Date());
         // 超时没取到会抛出异常java.util.concurrent.TimeoutException
-//        List<BookInfo> out = submit.get(1, TimeUnit.MILLISECONDS);
+        // List<BookInfo> out = submit.get(1, TimeUnit.MILLISECONDS);
         List<BookInfo> out = submit.get(3, TimeUnit.SECONDS);
         System.out.println(new Date());
         System.out.println(out);
     }
 
+    @Test
+    public void test3() throws Exception {
+        CompletableFuture<List<BookInfo>>  future =  CompletableFuture.supplyAsync(()-> {
+            System.out.println("当前线程:"+Thread.currentThread().getClass());
+            return  bookInfoMapper.page(new BookPageReq());
+        },onSaleNumServiceExecutor);
+        future.get();
+    }
 
 
     @Test
