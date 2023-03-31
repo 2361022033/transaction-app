@@ -5,12 +5,25 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * <p>
+ * 用户信息表
+ * </p>
+ *
+ * @author sjf
+ * @since 2023-03-16
+ */
+@Table(name = "user_info")
 @Data
 @Accessors(chain = true)
-@Table(name = "user_info")
-public class UserInfo {
+public class UserInfo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * PK
      */
@@ -28,19 +41,19 @@ public class UserInfo {
     private String password;
 
     /**
+     * 昵称
+     */
+    private String nickName;
+
+    /**
      * 真实姓名
      */
     private String realName;
 
     /**
-     * 性别
+     * 性别:0-女;1-男
      */
-    private Long sex;
-
-    /**
-     * 昵称
-     */
-    private String nickName;
+    private Integer sex;
 
     /**
      * 头像
@@ -55,22 +68,22 @@ public class UserInfo {
     /**
      * 账户余额
      */
-    private Long balance;
+    private BigDecimal balance;
 
     /**
      * 已买数量
      */
-    private Long bugNumber;
+    private Integer bugNumber;
 
     /**
      * 已售数量
      */
-    private Long soldOutNumber;
+    private Integer soldOutNumber;
 
     /**
      * 在售数量
      */
-    private Long onSaleNumber;
+    private Integer onSaleNumber;
 
     /**
      * 创建时间

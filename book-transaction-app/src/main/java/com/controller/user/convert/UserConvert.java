@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface UserConvert {
     UserConvert INSTANCE = Mappers.getMapper(UserConvert.class);
-    UserInfo convert(UserAddReq req);
+    UserInfo UserAddReq2Info(UserAddReq req);
     LookOtherResp userInfo2LookOtherResp(UserInfo userInfo);
     MyInfoResp userInfo2MyInfoResp(UserInfo userInfo);
 

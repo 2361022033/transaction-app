@@ -10,14 +10,20 @@
         <result column="description" property="description" jdbcType="VARCHAR"/>
         <result column="price_original" property="priceOriginal" jdbcType="DECIMAL"/>
         <result column="price_now" property="priceNow" jdbcType="DECIMAL"/>
-        <result column="type_first" property="typeFirst" jdbcType="VARCHAR"/>
-        <result column="type_second" property="typeSecond" jdbcType="VARCHAR"/>
+        <result column="first_type_code" property="firstTypeCode" jdbcType="VARCHAR"/>
+        <result column="first_type_name" property="firstTypeName" jdbcType="VARCHAR"/>
+        <result column="second_type_code" property="secondTypeCode" jdbcType="VARCHAR"/>
+        <result column="second_type_name" property="secondTypeName" jdbcType="VARCHAR"/>
+        <result column="third_type_code" property="thirdTypeCode" jdbcType="VARCHAR"/>
+        <result column="third_type_name" property="thirdTypeName" jdbcType="VARCHAR"/>
         <result column="image_one" property="imageOne" jdbcType="VARCHAR"/>
         <result column="image_two" property="imageTwo" jdbcType="VARCHAR"/>
         <result column="image_three" property="imageThree" jdbcType="VARCHAR"/>
         <result column="image_four" property="imageFour" jdbcType="VARCHAR"/>
         <result column="video" property="video" jdbcType="VARCHAR"/>
         <result column="saller_id" property="sallerId" jdbcType="BIGINT"/>
+        <result column="browse_number" property="browseNumber" jdbcType="BIGINT"/>
+        <result column="favorite_number" property="favoriteNumber" jdbcType="BIGINT"/>
         <result column="status" property="status" jdbcType="BIGINT"/>
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -38,19 +44,24 @@
             <if test="maxPriceNow!=null">
                 and price_now &lt;= #{maxPriceNow}
             </if>
-            <if test="typeFirst!=null and typeFirst!=''">
-                and type_first = #{typeFirst}
+            <if test="firstTypeCode!=null and firstTypeCode!=''">
+                and first_type_code = #{firstTypeCode}
             </if>
-            <if test="typeSecond!=null and typeSecond!=''">
-                and type_second = #{typeSecond}
+            <if test="secondTypeCode!=null and secondTypeCode!=''">
+                and second_type_code = #{secondTypeCode}
+            </if>
+            <if test="thirdTypeCode!=null and thirdTypeCode!=''">
+                and third_type_code = #{thirdTypeCode}
             </if>
         </where>
     </sql>
-    <select id="pageCount" resultType="java.lang.Long">
-        select count(*) from book_info <include refid="PageSelectCondition"></include>
+    <select id="pageCount" resultType="java.lang.Long" parameterType="com.controller.book.dto.req.BookPageReq">
+        select count(*) from book_info
+        <include refid="PageSelectCondition"></include>
     </select>
-    <select id="page" resultMap="BaseResultMap">
-        select * from book_info <include refid="PageSelectCondition"></include>
+    <select id="page" resultMap="BaseResultMap" parameterType="com.controller.book.dto.req.BookPageReq">
+        select * from book_info
+        <include refid="PageSelectCondition"></include>
         limit #{offset},#{pageSize}
     </select>
 

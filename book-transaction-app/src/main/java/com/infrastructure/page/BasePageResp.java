@@ -40,7 +40,7 @@ public class BasePageResp<T> implements Serializable {
     }
 
     public Long getPages() {
-        return this.pages;
+        return this.pages == null ? (this.total + this.pageSize - 1L) / this.pageSize : this.pages;
     }
 
     public void setPages(Long pages) {

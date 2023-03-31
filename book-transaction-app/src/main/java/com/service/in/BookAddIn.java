@@ -41,14 +41,9 @@ public class BookAddIn implements Serializable {
     private BigDecimal priceNow;
 
     /**
-     * 一级类型
+     * 三级类型编码
      */
-    private String typeFirst;
-
-    /**
-     * 二级类型
-     */
-    private String typeSecond;
+    private String thirdTypeCode;
 
     /**
      * 图片一地址

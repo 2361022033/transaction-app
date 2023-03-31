@@ -1,13 +1,7 @@
-import com.google.common.collect.Lists;
+import cn.hutool.core.collection.CollUtil;
 import org.junit.Test;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 
 
 //@RunWith(SpringRunner.class)
@@ -15,20 +9,24 @@ import java.util.Date;
 public class junfuTest {
     @Test
     public void dateformat() {
-        Date date = new Date();
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date));
-        LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
-        System.out.println(localDateTime.format(format));
+//        Date date = new Date();
+//        System.out.println(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date));
+//        LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+//        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+//        System.out.println(localDateTime.format(format));
+        ArrayList<String> objects = new ArrayList<>();
+        ArrayList<String> objects2 = null;
+        System.out.println(CollUtil.isEmpty(objects));
+        System.out.println(CollUtil.isEmpty(objects2));
     }
-    }
+}
 
 class Solution {
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3, 4, 5, 6, 7,1};
+        int[] nums = {1, 2, 3, 4, 5, 6, 7, 1};
         System.out.println(nums[0]);
         int len;
-        if ((len = nums.length) == 0 || len == 1){
+        if ((len = nums.length) == 0 || len == 1) {
             System.out.println(false);
         }
         //保持当前元素为最大, 如果下一个元素比当前元素还要大, 则不需要往前一个一个的比对
@@ -37,7 +35,7 @@ class Solution {
                 System.out.println(true);
             } else if (nums[i] < nums[i - 1]) {
                 for (int j = i - 2; j >= 0; j--) {
-                    if (nums[i] == nums[j]){
+                    if (nums[i] == nums[j]) {
                         System.out.println(true);
                     }
                 }
@@ -48,7 +46,7 @@ class Solution {
         }
         System.out.println(false);
     }
-    }
+}
 
 
 

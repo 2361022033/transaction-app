@@ -1,4 +1,5 @@
 package com.domain.entity;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -8,13 +9,23 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * <p>
+ * 图书信息表
+ * </p>
+ *
+ * @author sjf
+ * @since 2023-03-16
+ */
+@Table(name = "book_info")
 @Data
 @Accessors(chain = true)
-@Table(name = "book_info")
 public class BookInfo implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     /**
-     * id
+     * PK
      */
     @Id
     private Long id;
@@ -50,14 +61,34 @@ public class BookInfo implements Serializable {
     private BigDecimal priceNow;
 
     /**
-     * 一级类型
+     * 一级类型编码
      */
-    private String typeFirst;
+    private String firstTypeCode;
 
     /**
-     * 二级类型
+     * 一级类型名称
      */
-    private String typeSecond;
+    private String firstTypeName;
+
+    /**
+     * 二级类型编码
+     */
+    private String secondTypeCode;
+
+    /**
+     * 二级类型名称
+     */
+    private String secondTypeName;
+
+    /**
+     * 三级类型编码
+     */
+    private String thirdTypeCode;
+
+    /**
+     * 三级类型名称
+     */
+    private String thirdTypeName;
 
     /**
      * 图片一地址
@@ -88,6 +119,16 @@ public class BookInfo implements Serializable {
      * 卖家id
      */
     private Long sallerId;
+
+    /**
+     * 浏览数
+     */
+    private Integer browseNumber;
+
+    /**
+     * 收藏数
+     */
+    private Integer favoriteNumber;
 
     /**
      * 状态:1(在售),0(已售)

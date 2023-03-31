@@ -17,9 +17,9 @@ public class UserInfoUtil {
 
     private static final Long DEFAULT_USER_ID = 1L;
 
-    private static final String DEFAULT_REAL_NAME = "苏俊辅";
+    private static final String DEFAULT_REAL_NAME = "伊泽瑞尔";
 
-    private static final String DEFAULT_NICK_NAME = "苏悟空";
+    private static final String DEFAULT_NICK_NAME = "探险家";
 
     private static final String DEFAULT_USER_NAME = "001";
 

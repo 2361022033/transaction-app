@@ -30,12 +30,12 @@ public class UserInfoController {
 
     @ApiOperation(value = "测试")
     @RequestMapping(value = "/test",name = "测试",method = {RequestMethod.PUT,RequestMethod.GET})
-    public HttpResult<String> test(String userId){
+    public HttpResult<String> test(String userName){
         try {
             System.out.println("配置文件："+ SpringUtil.getActiveProfile());
             SimpleDateFormat sdfymdTime = new SimpleDateFormat("yyyyMMddHHmmss");
             Date parse = sdfymdTime.parse("20240203170000");
-            TokenEntity tokenEntity = new TokenEntity().setUserName(userId).setRoot("book-transaction").setOverdueTime(parse);
+            TokenEntity tokenEntity = new TokenEntity().setUserName(userName).setRoot("book-transaction").setOverdueTime(parse);
             String tokenS = JSON.toJSONString(tokenEntity);
             String encodedString = Base64.getEncoder().encodeToString(tokenS.getBytes());
             System.out.println(encodedString);

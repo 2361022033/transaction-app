@@ -1,8 +1,11 @@
 package com.controller.book.dto.req;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -10,73 +13,50 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 public class BookAddReq implements Serializable {
     private static final long serialVersionUID = 1L;
-    /**
-     * 书名
-     */
+
+    @ApiModelProperty("书名")
+    @NotEmpty(message = "书名不能为空!")
     private String bookName;
 
-    /**
-     * 作者
-     */
+    @ApiModelProperty("作者")
+    @NotEmpty(message = "作者不能为空!")
     private String writer;
 
-    /**
-     * 出版社
-     */
+    @ApiModelProperty("出版社")
+    @NotEmpty(message = "出版社不能为空!")
     private String publishingHouse;
 
-    /**
-     * 描述
-     */
+    @ApiModelProperty("描述")
+    @NotEmpty(message = "描述不能为空!")
     private String description;
 
-    /**
-     * 原价
-     */
+    @ApiModelProperty("原价")
+    @NotNull(message = "原价不能为空!")
     private BigDecimal priceOriginal;
 
-    /**
-     * 在售价格
-     */
+    @ApiModelProperty("在售价格")
+    @NotNull(message = "在售价格不能为空!")
     private BigDecimal priceNow;
 
-    /**
-     * 一级类型
-     */
-    private String typeFirst;
+    @ApiModelProperty("三级类型编码")
+    @NotEmpty(message = "三级类型编码不能为空!")
+    private String thirdTypeCode;
 
-    /**
-     * 二级类型
-     */
-    private String typeSecond;
-
-    /**
-     * 图片一地址
-     */
+    @ApiModelProperty("图片一地址")
     private String imageOne;
 
-    /**
-     * 图片二地址
-     */
+    @ApiModelProperty("图片二地址")
     private String imageTwo;
 
-    /**
-     * 图片三地址
-     */
+    @ApiModelProperty("图片三地址")
     private String imageThree;
 
-    /**
-     * 图片四地址
-     */
+    @ApiModelProperty("图片四地址")
     private String imageFour;
 
-    /**
-     * 视频地址
-     */
+    @ApiModelProperty("视频地址")
     private String video;
 
-    /**
-     * 卖家id
-     */
+    @ApiModelProperty("卖家id")
     private Long sallerId;
 }

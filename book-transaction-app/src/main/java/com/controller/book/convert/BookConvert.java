@@ -1,7 +1,6 @@
 package com.controller.book.convert;
 
 import com.controller.book.dto.req.BookAddReq;
-import com.controller.book.dto.req.BookUpdateReq;
 import com.controller.book.dto.resp.BookDetailResp;
 import com.domain.entity.BookInfo;
 import com.infrastructure.page.BasePageResp;
@@ -21,10 +20,7 @@ public interface BookConvert {
 
     BookInfo convert(BookAddReq req);
 
-    List<BookDetailResp> convert( List<BookInfo> list);
-
-    BookInfo convert(BookUpdateReq req);
-
+    List<BookDetailResp> convert(List<BookInfo> list);
 
     BookAddIn bookAddReq2In(BookAddReq req);
 }

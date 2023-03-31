@@ -10,8 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface BookInfoMapper extends BaseMapper<BookInfo> {
-
+    Long pageCount(BookPageReq req);
     List<BookInfo> page(BookPageReq req);
 
-    Long pageCount(BookPageReq req);
 }
