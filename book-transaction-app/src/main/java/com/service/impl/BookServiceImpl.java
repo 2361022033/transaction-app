@@ -2,7 +2,6 @@ package com.service.impl;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.NumberUtil;
-import com.controller.book.convert.BookConvert;
 import com.controller.book.dto.req.BookPageReq;
 import com.controller.book.dto.req.BookUpdateReq;
 import com.dictionaries.BookStatus;
@@ -11,6 +10,7 @@ import com.domain.entity.BookTypeConfig;
 import com.domain.mapper.BookInfoMapper;
 import com.domain.mapper.BookTypeConfigMapper;
 import com.domain.mapper.UserInfoMapper;
+import com.infrastructure.DistributedLock;
 import com.infrastructure.ServiceExcpetion;
 import com.infrastructure.page.BasePageResp;
 import com.infrastructure.page.PageResultUtils;
@@ -68,9 +68,9 @@ public class BookServiceImpl implements BookService {
      */
     public void fillTypeCodeAndName(BookInfo info, String thirdTypeCode) {
         List<BookTypeConfig> bookTypeConfigs = bookTypeConfigMapper.selectAllThirdType();
-        Map<String, BookTypeConfig> typeConfigMap =bookTypeConfigs.stream().collect(Collectors.toMap(BookTypeConfig::getThirdTypeCode, e -> e));
+        Map<String, BookTypeConfig> typeConfigMap = bookTypeConfigs.stream().collect(Collectors.toMap(BookTypeConfig::getThirdTypeCode, e -> e));
         BookTypeConfig bookTypeConfig = typeConfigMap.get(thirdTypeCode);
-        Assert.notNull(bookTypeConfig,  () -> new ServiceExcpetion(500, "类型编码不正确"));
+        Assert.notNull(bookTypeConfig, () -> new ServiceExcpetion(500, "类型编码不正确"));
         info.setFirstTypeCode(bookTypeConfig.getFirstTypeCode());
         info.setFirstTypeName(bookTypeConfig.getFirstTypeName());
         info.setSecondTypeCode(bookTypeConfig.getSecondTypeCode());
@@ -120,14 +120,23 @@ public class BookServiceImpl implements BookService {
     @Override
     public void update(BookUpdateReq req) {
         BookInfo book = bookInfoMapper.selectByPrimaryKey(req.getId());
-        Assert.notNull(book,  () -> new ServiceExcpetion(500, "图书不存在"));
+        Assert.notNull(book, () -> new ServiceExcpetion(500, "图书不存在"));
         if (NumberUtil.equals(book.getSallerId(), UserInfoUtil.getUserId())) {
-            throw new ServiceExcpetion(400,"没有编辑此书的权限");
+            throw new ServiceExcpetion(400, "没有编辑此书的权限");
         }
         BookInfo bookInfo = new BookInfo();
-        BeanUtils.copyProperties(req,bookInfo);
+        BeanUtils.copyProperties(req, bookInfo);
         fillTypeCodeAndName(bookInfo, req.getThirdTypeCode());
-        bookInfoMapper.updateByPrimaryKeySelective(bookInfo);
+        DistributedLock.tryLock("book:" + req.getId(), 0L, (succes) -> {
+            if (!succes) {
+                throw new ServiceExcpetion(400, "系统正忙,图书被锁定状态");
+            }
+            try {
+                bookInfoMapper.updateByPrimaryKeySelective(bookInfo);
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        });
     }
 
 }
