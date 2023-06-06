@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 @Api(tags = {"图书接口"})
 @RestController
@@ -25,7 +26,7 @@ public class BookController {
 
     @ApiOperation(value = "上架图书")
     @PostMapping(value = "/add", name = "上架图书")
-    public HttpResult<Void> add(BookAddReq req) {
+    public HttpResult<Void> add(@Valid BookAddReq req) {
         BookAddIn in = BookConvert.INSTANCE.bookAddReq2In(req);
         in.setSallerId(UserInfoUtil.getUserId());
         bookService.add(in);

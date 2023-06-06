@@ -16,6 +16,7 @@ import com.infrastructure.page.BasePageResp;
 import com.infrastructure.page.PageResultUtils;
 import com.service.BookService;
 import com.service.in.BookAddIn;
+import com.utils.RedisUtils;
 import com.utils.UserInfoUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -39,6 +40,8 @@ public class BookServiceImpl implements BookService {
     private UserInfoMapper userInfoMapper;
     @Resource
     private BookTypeConfigMapper bookTypeConfigMapper;
+    @Autowired
+    RedisUtils redisUtils;
 
     @Autowired
     @Qualifier("onSaleNumServiceExecutor")

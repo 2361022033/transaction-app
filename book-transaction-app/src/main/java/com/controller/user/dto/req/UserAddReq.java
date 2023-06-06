@@ -4,10 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
 
 @Data
 @Accessors(chain = true)
@@ -25,7 +22,6 @@ public class UserAddReq {
     private String realName;
 
     @ApiModelProperty("性别:0-女,1-男")
-    @NotEmpty(message = "性别不能为空")
     private Long sex;
 
     @ApiModelProperty("昵称")
@@ -38,4 +34,7 @@ public class UserAddReq {
     @ApiModelProperty("个性签名")
     private String introduction;
 
+    @ApiModelProperty("验证码")
+    @NotEmpty(message = "验证码不能为空")
+    private String validCode;
 }

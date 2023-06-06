@@ -26,4 +26,9 @@ public interface UserService {
      */
     UserInfo findDetailByUserId(Long userId);
 
+    /**
+     * 获取随机验证码
+     * @return
+     */
+    String getValidCode(String userName);
 }
