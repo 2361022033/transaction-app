@@ -10,11 +10,15 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.time.Duration;
 
 /**
  * @description: RedisConfig
@@ -55,13 +59,50 @@ public class RedisConfig {
     }
 
 
+//    /**
+//     * 通过注解来使用reids,使@Cacheable(value = "product:seckill", key = "#req.bookName")生效 所以配置这个bean,可是这个不能设置缓存默认过期时间
+//     * @param redisConnectionFactory
+//     * @return
+//     */
+//    @Bean
+//    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+//        return RedisCacheManager.create(redisConnectionFactory);
+//    }
+
     /**
-     * 通过注解来使用reids,使@Cacheable(value = "product:seckill", key = "#req.bookName")生效 所以配置这个bean
-     * @param redisConnectionFactory
-     * @return
+     * 配置一个CacheManager才能使用@Cacheable等注解
+     *
      */
     @Bean
-    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
-        return RedisCacheManager.create(redisConnectionFactory);
+    public CacheManager cacheManager(RedisTemplate<String, Object> template) {
+
+        // 基本配置
+        RedisCacheConfiguration defaultCacheConfiguration =
+                RedisCacheConfiguration
+                        .defaultCacheConfig()
+                        // 设置key为String
+                        .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(template.getStringSerializer()))
+                        // 设置value 为自动转Json的Object
+                        .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(template.getValueSerializer()))
+                        // 不缓存null
+                        .disableCachingNullValues()
+                        // 缓存数据保存1小时
+                        .entryTtl(Duration.ofSeconds(60));
+
+        // 构造一个redis缓存管理器
+        RedisCacheManager redisCacheManager =
+                RedisCacheManager.RedisCacheManagerBuilder
+                        // Redis 连接工厂
+                        .fromConnectionFactory(template.getConnectionFactory())
+                        // 缓存配置
+                        .cacheDefaults(defaultCacheConfiguration)
+//                        .withInitialCacheConfigurations(Maps.newHashMap())
+//                        .withCacheConfiguration("cache_user", getCacheConfigurationWithTtl(template, 60))
+//                        .withCacheConfiguration("cache_post", getCacheConfigurationWithTtl(template, 120))
+//                        // 上面默然缓存时间是1小时，但是可以根据cacheName来设置缓存时间
+                        // 配置同步修改或删除 put/evict
+                        .transactionAware()
+                        .build();
+        return redisCacheManager;
     }
 }
