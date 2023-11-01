@@ -11,6 +11,7 @@ import com.infrastructure.HttpResult;
 import com.infrastructure.filter.TokenEntity;
 import com.service.UserService;
 import com.utils.UserInfoUtil;
+import com.utils.snowflake.IdGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,9 @@ public class UserInfoController {
             String tokenS = JSON.toJSONString(tokenEntity);
             String encodedString = Base64.getEncoder().encodeToString(tokenS.getBytes());
             System.out.println(encodedString);
+            System.out.println(IdGenerator.nextId());
+            System.out.println(IdGenerator.nextId());
+            System.out.println(IdGenerator.nextId());
             return HttpResult.success(encodedString);
         } catch (ParseException e) {
             e.printStackTrace();
