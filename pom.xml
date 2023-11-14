@@ -17,7 +17,10 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
-    <!--添加父工程坐标-->
+    <!--添加父工程坐标 非必须,有了这个就不需要springbootstarter了,父工程包含了因为,简便而已-->
+    <!--通过将你的项目的父项目设置为 spring-boot-starter-parent，你可以继承 Spring Boot 团队维护的一组默认配置。
+    这包括了 Maven 的默认配置、编译插件的配置、资源过滤等。此外，它还会管理依赖版本号，
+    确保你的项目中使用的依赖版本与 Spring Boot 的版本兼容。-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
