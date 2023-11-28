@@ -58,7 +58,7 @@ public class BookServiceImpl implements BookService {
         BeanUtils.copyProperties(in, info);
         info.setStatus(BookStatus.ON_SALE);
         fillTypeCodeAndName(info, in.getThirdTypeCode());
-        bookInfoMapper.insertSelective(info);
+        bookInfoMapper.insert(info);
         // 用户的在售数量+1
         onSaleNumServiceExecutor.execute(() -> userInfoMapper.updateOnSaleNumber(in.getSallerId()));
     }
@@ -108,7 +108,7 @@ public class BookServiceImpl implements BookService {
         if (Objects.isNull(bookId)) {
             throw new ServiceExcpetion(500, "图书id不能为空!");
         }
-        BookInfo bookInfo = bookInfoMapper.selectByPrimaryKey(bookId);
+        BookInfo bookInfo = bookInfoMapper.selectById(bookId);
         if (Objects.isNull(bookInfo)) {
             throw new ServiceExcpetion(500, "图书已不存在!");
         }
@@ -122,7 +122,7 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public void update(BookUpdateReq req) {
-        BookInfo book = bookInfoMapper.selectByPrimaryKey(req.getId());
+        BookInfo book = bookInfoMapper.selectById(req.getId());
         Assert.notNull(book, () -> new ServiceExcpetion(500, "图书不存在"));
         if (NumberUtil.equals(book.getSallerId(), UserInfoUtil.getUserId())) {
             throw new ServiceExcpetion(400, "没有编辑此书的权限");
@@ -135,7 +135,7 @@ public class BookServiceImpl implements BookService {
                 throw new ServiceExcpetion(400, "系统正忙,图书被锁定状态");
             }
             try {
-                bookInfoMapper.updateByPrimaryKeySelective(bookInfo);
+                bookInfoMapper.updateById(bookInfo);
             } catch (Exception e) {
                 log.error(e.getMessage());
             }

@@ -1,10 +1,9 @@
 package com.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,7 +16,7 @@ import java.util.Date;
  * @author sjf
  * @since 2023-03-16
  */
-@Table(name = "book_info")
+@TableName("book_info")
 @Data
 @Accessors(chain = true)
 public class BookInfo implements Serializable {
@@ -27,7 +26,6 @@ public class BookInfo implements Serializable {
     /**
      * PK
      */
-    @Id
     private Long id;
 
     /**

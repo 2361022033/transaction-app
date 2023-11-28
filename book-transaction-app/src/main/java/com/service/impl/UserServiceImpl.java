@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
         }
         UserInfo in = UserConvert.INSTANCE.UserAddReq2Info(req);
         in.setPassword(DigestUtil.md5Hex(req.getPassword()));
-        userInfoMapper.insertSelective(in);
+        userInfoMapper.insert(in);
     }
 
     /**

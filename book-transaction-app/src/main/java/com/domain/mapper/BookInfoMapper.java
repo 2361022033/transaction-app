@@ -1,10 +1,10 @@
 package com.domain.mapper;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.controller.book.dto.req.BookPageReq;
 import com.domain.entity.BookInfo;
 import org.apache.ibatis.annotations.Mapper;
-import tk.mybatis.mapper.common.BaseMapper;
 
 import java.util.List;
 

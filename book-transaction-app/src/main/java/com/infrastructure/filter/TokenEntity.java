@@ -3,8 +3,6 @@ package com.infrastructure.filter;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Data

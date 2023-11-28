@@ -1,8 +1,8 @@
 package com.domain.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.domain.entity.BookTypeConfig;
 import org.apache.ibatis.annotations.Mapper;
-import tk.mybatis.mapper.common.BaseMapper;
 
 import java.util.List;
 
@@ -18,6 +18,7 @@ import java.util.List;
 public interface BookTypeConfigMapper extends BaseMapper<BookTypeConfig> {
     /**
      * 查询所有类型
+     *
      * @return
      */
     List<BookTypeConfig> selectAllThirdType();
